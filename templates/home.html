@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+  <h3>Welcome, {{ username }}!</h3>
+
+  {% if contacts %}
+    <ul class="list-group">
+      {% for c in contacts %}
+        <li class="list-group-item mb-2">
+          <strong>{{ c.first_name }} {{ c.last_name }}</strong><br>
+          Phone: {{ c.phone }}<br>
+          Email: {{ c.email }}<br>
+          Address: {{ c.address }}<br>
+          LinkedIn: <a href="{{ c.linkedin }}" target="_blank">Profile</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No contacts yet. <a href="{{ url_for('add_contact') }}">Add one</a>.</p>
+  {% endif %}
+</div>
+{% endblock %}
